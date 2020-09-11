@@ -2,14 +2,14 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const base = css`
-	font-size: ${({ small, medium, large, size }) => {
+	font-size: ${({ sm, md, lg, size }) => {
 		if (size) return size;
 		switch (true) {
-			case small:
+			case sm:
 				return '15px';
-			case medium:
+			case md:
 				return '20px';
-			case large:
+			case lg:
 				return '27.5px';
 			default:
 				return '20px';
@@ -55,13 +55,13 @@ const ButtonBase = css`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/* width: ${({ width }) => (width ? width : '100px')}; */
+	/* width: ${({ w }) => (w ? w : '100px')}; */
 `;
 
 export const Button = styled.button`
 	${base}
 	${ButtonBase}
-	padding: ${({ padding }) => (padding ? padding : '10px')};
+	padding: ${({ pad }) => (pad ? pad : '10px')};
 	color: ${({ fontColor }) => (fontColor ? fontColor : 'white')};
 	background-color: ${({ bgColor }) => (bgColor ? bgColor : '#363636')};
 	border: transparent;
@@ -76,7 +76,7 @@ export const Button = styled.button`
 
 export const OutlinedButton = styled.button`
 	${base}
-	padding: ${({ padding }) => (padding ? padding : '10px')};
+	padding: ${({ pad }) => (pad ? pad : '10px')};
 	background: transparent;
 
 	border: ${({ color }) => (color ? `1px solid ${color}` : '0.1px solid white')};
@@ -95,13 +95,13 @@ export const OutlinedButton = styled.button`
 const FlexContainerBase = css`
 	display: flex;
 
-	align-items: ${({ alignCenter, alignLeft, alignRight }) => {
+	align-items: ${({ aCenter, aLeft, aRight }) => {
 		switch (true) {
-			case alignCenter:
+			case aCenter:
 				return 'center';
-			case alignLeft:
+			case aLeft:
 				return 'flex-start';
-			case alignRight:
+			case aRight:
 				return 'flex-end';
 			default:
 				return 'flex-start';
@@ -109,25 +109,25 @@ const FlexContainerBase = css`
 	}};
 
 	justify-content: ${({
-		contentCenter,
-		contentLeft,
-		contentRight,
-		contentBetween,
-		contentAround,
-		contentEvenly,
+		jCenter,
+		jLeft,
+		jRight,
+		jBetween,
+		jAround,
+		jEvenly,
 	}) => {
 		switch (true) {
-			case contentCenter:
+			case jCenter:
 				return 'center';
-			case contentLeft:
+			case jLeft:
 				return 'flex-start';
-			case contentRight:
+			case jRight:
 				return 'flex-end';
-			case contentBetween:
+			case jBetween:
 				return 'space-between';
-			case contentAround:
+			case jAround:
 				return 'space-around';
-			case contentEvenly:
+			case jEvenly:
 				return 'space-evenly';
 			default:
 				return 'flex-start';
@@ -218,7 +218,7 @@ export const InputBox = styled.input`
 	}};
 
 	color: ${({ color }) => (color ? color : '#787878')};
-	width: ${({ width }) => (width ? width : '100%')};
+	width: ${({ w }) => (w ? w : '100%')};
 `;
 
 export const Jumbotron = styled(FlexContainer)`
@@ -232,7 +232,7 @@ export const Jumbotron = styled(FlexContainer)`
 		background: rgba(0, 0, 0, 0.5);
 	}
 	width: 100vw;
-	height: ${({ height }) => (height ? height : '40vh')};
+	height: ${({ h }) => (h ? h : '40vh')};
 
 	border-bottom: ${({ boldBorder, softBorder }) => {
 		switch (true) {
@@ -297,12 +297,12 @@ export const Container = styled.div`
 	display: flex;
 	width: ${({ width }) => (width ? width : '90%')};
 	margin: auto;
-	align-items: center;
+	//align-items: center;
 `;
 
 export const Image = styled.img`
-	height: ${({ height }) => (height ? height : '30px')};
-	width: ${({ width }) => (width ? width : '30px')};
+	height: ${({ h }) => (h ? h : '30px')};
+	width: ${({ w }) => (w ? w : '30px')};
 
 	border: ${({ border }) => (border ? '1px solid #c4c4c4' : 'none')};
 `;
