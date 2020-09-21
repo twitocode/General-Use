@@ -1,22 +1,23 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 const base = css`
 	font-size: ${({ sm, md, lg, size }) => {
 		if (size) return size;
 		switch (true) {
 			case sm:
-				return '15px';
+				return '1.125rem';
 			case md:
-				return '20px';
+				return '1.25rem';
 			case lg:
-				return '27.5px';
+				return '1.5rem';
 			default:
-				return '20px';
+				return '1rem';
 		}
 	}};
 
-	font-weight: ${({ light, regular, bold }) => {
+	font-weight: ${({ light, regular, bold, weight }) => {
+		if (weight) return weight;
 		switch (true) {
 			case light:
 				return '300';
@@ -24,6 +25,8 @@ const base = css`
 				return '500';
 			case bold:
 				return '700';
+			// case weight:
+			// 	return weight;
 			default:
 				return '500';
 		}
@@ -66,7 +69,6 @@ export const Button = styled.button`
 	background-color: ${({ bgColor }) => (bgColor ? bgColor : '#363636')};
 	border: transparent;
 	border-radius: ${({ radius }) => (radius ? radius : '5px')};
-
 	:active {
 		border: ${({ borderColor }) =>
 			borderColor ? `2px solid ${borderColor}` : '2px solid #616161'};
@@ -78,7 +80,6 @@ export const OutlinedButton = styled.button`
 	${base}
 	padding: ${({ pad }) => (pad ? pad : '10px')};
 	background: transparent;
-
 	border: ${({ color }) => (color ? `1px solid ${color}` : '0.1px solid white')};
 
 	border-radius: ${({ radius }) => (radius ? radius : '3px')};
@@ -108,14 +109,7 @@ const FlexContainerBase = css`
 		}
 	}};
 
-	justify-content: ${({
-		jCenter,
-		jLeft,
-		jRight,
-		jBetween,
-		jAround,
-		jEvenly,
-	}) => {
+	justify-content: ${({ jCenter, jLeft, jRight, jBetween, jAround, jEvenly }) => {
 		switch (true) {
 			case jCenter:
 				return 'center';
@@ -183,7 +177,6 @@ export const Box = styled.div`
 	height: ${({ height }) => (height ? height : '50%')};
 	background-color: ${({ color }) => (color ? color : '#e6e6e6')};
 	padding: ${({ padding }) => (padding ? padding : '0')};
-
 	border: ${({ boldBorder, softBorder }) => {
 		switch (true) {
 			case boldBorder:
@@ -194,7 +187,6 @@ export const Box = styled.div`
 				return 'none';
 		}
 	}};
-
 	background-image: url(${({ img }) => img});
 	background-position: center;
 `;
@@ -216,7 +208,6 @@ export const InputBox = styled.input`
 				return 'none';
 		}
 	}};
-
 	color: ${({ color }) => (color ? color : '#787878')};
 	width: ${({ w }) => (w ? w : '100%')};
 `;
@@ -227,13 +218,11 @@ export const Jumbotron = styled(FlexContainer)`
 		url(${(props) => props.img});
 	background-position: center;
 	background-blend-mode: darken;
-
 	:after {
 		background: rgba(0, 0, 0, 0.5);
 	}
 	width: 100vw;
 	height: ${({ h }) => (h ? h : '40vh')};
-
 	border-bottom: ${({ boldBorder, softBorder }) => {
 		switch (true) {
 			case boldBorder:
@@ -252,7 +241,7 @@ export const FlexList = styled(FlexContainer)`
 	}
 `;
 
-export const StyledLink = styled(Link)`
+export const Link = styled(RouterLink)`
 	${base}
 	text-decoration: none;
 	padding: ${({ padding }) => (padding ? padding : '5px')};
@@ -260,7 +249,6 @@ export const StyledLink = styled(Link)`
 		color: ${({ hoverColor }) => (hoverColor ? hoverColor : '#d1d1d1')};
 		text-decoration: none;
 	}
-
 	color: ${({ color, blue, white, black }) => {
 		switch (true) {
 			case color:
@@ -279,7 +267,6 @@ export const StyledLink = styled(Link)`
 
 export const Bar = styled(Box)`
 	${FlexContainerBase}
-
 	border: none;
 	border-bottom: ${({ boldBorder, softBorder }) => {
 		switch (true) {
@@ -303,7 +290,6 @@ export const Container = styled.div`
 export const Image = styled.img`
 	height: ${({ h }) => (h ? h : '30px')};
 	width: ${({ w }) => (w ? w : '30px')};
-
 	border: ${({ border }) => (border ? '1px solid #c4c4c4' : 'none')};
 `;
 
