@@ -128,11 +128,11 @@ const FlexContainerBase = css`
 		}
 	}};
 
-	flex-direction: ${({ row, column }) => {
+	flex-direction: ${({ row, col }) => {
 		switch (true) {
 			case row:
 				return 'row';
-			case column:
+			case col:
 				return 'column';
 			default:
 				return 'row';
@@ -141,8 +141,8 @@ const FlexContainerBase = css`
 
 	flex: ${({ flex }) => (flex ? flex : '1')};
 
-	width: ${({ full, half, width }) => {
-		if (width) return width;
+	width: ${({ full, half, w }) => {
+		if (w) return w;
 		switch (true) {
 			case full:
 				return '100%';
@@ -153,8 +153,8 @@ const FlexContainerBase = css`
 		}
 	}};
 
-	height: ${({ full, half, height }) => {
-		if (height) return height;
+	height: ${({ full, half, h }) => {
+		if (h) return h;
 		switch (true) {
 			case full:
 				return '100%';
@@ -173,10 +173,10 @@ export const FlexContainer = styled.div`
 `;
 
 export const Box = styled.div`
-	width: ${({ width }) => (width ? width : '50%')};
-	height: ${({ height }) => (height ? height : '50%')};
+	width: ${({ w }) => (w ? w : '50%')};
+	height: ${({ h }) => (h ? h : '50%')};
 	background-color: ${({ color }) => (color ? color : '#e6e6e6')};
-	padding: ${({ padding }) => (padding ? padding : '0')};
+	padding: ${({ pad }) => (pad ? pad : '0')};
 	border: ${({ boldBorder, softBorder }) => {
 		switch (true) {
 			case boldBorder:
@@ -194,7 +194,7 @@ export const Box = styled.div`
 export const InputBox = styled.input`
 	${base}
 	border: none;
-	padding: ${({ padding }) => (padding ? padding : '10px')};
+	padding: ${({ pad }) => (pad ? pad : '10px')};
 	padding-left: 0;
 	outline: none;
 	border-radius: ${({ radius }) => (radius ? radius : '3px')};
@@ -223,11 +223,11 @@ export const Jumbotron = styled(FlexContainer)`
 	}
 	width: 100vw;
 	height: ${({ h }) => (h ? h : '40vh')};
-	border-bottom: ${({ boldBorder, softBorder }) => {
+	border-bottom: ${({ bBorder, sBorder }) => {
 		switch (true) {
-			case boldBorder:
+			case bBorder:
 				return '1px solid #333333';
-			case softBorder:
+			case sBorder:
 				return '1px solid #e0e0e0';
 			default:
 				return 'none';
@@ -244,7 +244,7 @@ export const FlexList = styled(FlexContainer)`
 export const Link = styled(RouterLink)`
 	${base}
 	text-decoration: none;
-	padding: ${({ padding }) => (padding ? padding : '5px')};
+	padding: ${({ pad }) => (pad ? pad : '5px')};
 	:hover {
 		color: ${({ hoverColor }) => (hoverColor ? hoverColor : '#d1d1d1')};
 		text-decoration: none;
@@ -268,11 +268,11 @@ export const Link = styled(RouterLink)`
 export const Bar = styled(Box)`
 	${FlexContainerBase}
 	border: none;
-	border-bottom: ${({ boldBorder, softBorder }) => {
+	border-bottom: ${({ bBorder, sBorder }) => {
 		switch (true) {
-			case boldBorder:
+			case bBorder:
 				return '1px solid #333333';
-			case softBorder:
+			case sBorder:
 				return '1px solid #e0e0e0';
 			default:
 				return 'none';
@@ -282,7 +282,7 @@ export const Bar = styled(Box)`
 
 export const Container = styled.div`
 	display: flex;
-	width: ${({ width }) => (width ? width : '90%')};
+	width: ${({ w }) => (w ? w : '90%')};
 	margin: auto;
 	//align-items: center;
 `;
@@ -295,11 +295,11 @@ export const Image = styled.img`
 
 export const Header = styled.h1`
 	${base};
-	border-bottom: ${({ softUnderline, boldUnderline }) => {
+	border-bottom: ${({ sUnderline, bUnderline }) => {
 		switch (true) {
-			case softUnderline:
+			case sUnderline:
 				return '1px solid  #c6c6c6';
-			case boldUnderline:
+			case bUnderline:
 				return '1px solid  #393939';
 			default:
 				return 'none';
