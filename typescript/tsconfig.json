@@ -14,7 +14,11 @@
 		"noUnusedParameters": true,
 		"pretty": true,
 		"allowUnreachableCode": false,
-		"forceConsistentCasingInFileNames": true
+		"forceConsistentCasingInFileNames": true,
+		"experimentalDecorators": true,
+		"emitDeclarationOnly": false,
+		"strictPropertyInitialization": false,
+		"emitDecoratorMetadata": true
 	},
 	"include": ["./src"],
 	"exclude": ["./node_modules"],
