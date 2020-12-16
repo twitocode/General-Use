@@ -1,42 +1,42 @@
-import { ApolloServer } from 'apollo-server-express';
-import cors from 'cors';
-import express, { Application } from 'express';
+import { ApolloServer } from 'apollo-server';
+import { Request, Response } from 'express';
+import { connect } from 'mongoose';
 import { buildSchema } from 'type-graphql';
 
 export class Server {
-	private app: Application;
 	private server: ApolloServer;
 	private port: string | number;
 
 	constructor(port: string | number) {
-		port = port;
+		this.port = port;
 	}
 
-  public bootstrap = async () => {
-    let { port, app, server } = this;
-    
-    app = express();
-    server = new ApolloServer({
-      schema: await buildSchema({ resolvers: [__dirname + '/resolvers/*.ts'] }),
-      introspection: true,
-      playground: true,
-      tracing: true,
-    });
+	public bootstrap = async () => {
+		let { server, port } = this;
 
-    app.use(cors());
+		server = new ApolloServer({
+			schema: await buildSchema({ resolvers: [__dirname + '/resolvers/*.ts'] }),
+			introspection: true,
+			playground: true,
+			tracing: true,
+			context: ({ req, res }: { req: Request; res: Response }) => ({ req, res }),
+		});
 
-    app.get('/', (_, res) => {
-      res.send(`
-			  <div>
-				  <h1>Friendify Server GraphQL Edition</h1>
-				  <h3>I will not tell you were to go from here</h3>
-			  </div>
-		  `);
-    });
+		const { url } = await server.listen(port);
+		console.log(`Listening at ${url}`);
 
-    server.applyMiddleware({ app: app });
-    app.listen(port, () => {
-      console.log(`Listening at http://localhost:${port}/graphql`);
-    });
-  }
+		/*
+			try {
+				await connect(process.env.MONGO!, {
+					useNewUrlParser: true,
+					useUnifiedTopology: true,
+					useFindAndModify: true,
+				});
+
+				console.log('Connected to DB');
+			} catch (err) {
+				console.log(err.message);
+			}
+		*/
+	};
 }
