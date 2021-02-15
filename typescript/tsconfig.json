@@ -10,7 +10,7 @@
 		"rootDir": "./src",
 		"outDir": "./lib",
 		"allowSyntheticDefaultImports": true,
-		"noImplicitReturns": true,
+		"noImplicitReturns": false,
 		"noUnusedParameters": true,
 		"pretty": true,
 		"allowUnreachableCode": false,
